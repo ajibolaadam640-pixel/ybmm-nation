@@ -28,7 +28,7 @@ export default function Home() {
       </div>
 
       {/* JOIN BUTTON */}
-      <a href="#" style={{
+      https://chat.whatsapp.com/DV93k9Zp8ojDhuMVzSXdKt
         background: '#00ff88',
         color: 'black',
         padding: '16px 32px',
