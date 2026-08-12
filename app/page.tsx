@@ -28,15 +28,20 @@ export default function Home() {
       </div>
 
       {/* JOIN BUTTON */}
-      https://chat.whatsapp.com/DV93k9Zp8ojDhuMVzSXdKt
-        background: '#00ff88',
-        color: 'black',
-        padding: '16px 32px',
-        borderRadius: '12px',
-        fontSize: '18px',
-        fontWeight: 'bold',
-        textDecoration: 'none',
-        display: 'inline-block'
+      <a 
+        href="https://chat.whatsapp.com/DV93k9Zp8ojDhuMVzSXdKt" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        style={{
+          background: '#00ff88',
+          color: 'black',
+          padding: '16px 32px',
+          borderRadius: '12px',
+          fontSize: '18px',
+          fontWeight: 'bold',
+          textDecoration: 'none',
+          display: 'inline-block',
+          cursor: 'pointer'
       }}>
         Join The Nation 👇
       </a>
