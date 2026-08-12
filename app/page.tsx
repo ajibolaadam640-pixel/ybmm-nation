@@ -30,7 +30,7 @@ export default function Home() {
       {/* JOIN BUTTON */}
       <a 
         href="https://chat.whatsapp.com/DV93k9Zp8ojDhuMVzSXdKt" 
-        target="_blank" 
+         target="_blank"
         rel="noopener noreferrer"
         style={{
           background: '#00ff88',
