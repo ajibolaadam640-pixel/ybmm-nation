@@ -25,24 +25,25 @@ const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
 const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 async function signUp() {
-const email = document.getElementById('email').value;
-const password = document.getElementById('password').value;
-const msg = document.getElementById('message');
+  const email = document.getElementById('email').value;
+  const password = document.getElementById('password').value;
+  const msg = document.getElementById('message');
 
-msg.innerText = 'Signing up...';
+  msg.innerText = 'Signing up...';
 
-const { data, error } = await supabase.auth.signUp({
-email: email,
-password: password
-});
+  const { data, error } = await supabase.auth.signUp({
+    email: email,
+    password: password
+  });
 
-if (error) {
-msg.innerText = 'Error: ' + error.message;
-msg.style.color = 'red';
-alert("ERROR: " + error.message);
-} else {
-msg.innerText = 'Success! Account created';
-msg.style.color = 'green';
+  if (error) {
+    msg.innerText = 'Error: ' + error.message;
+    msg.style.color = 'red';
+    alert("ERROR: " + error.message);
+  } else {
+    msg.innerText = 'Success! Account created';
+    msg.style.color = 'green';
+  }
 }
 </script>
 </body>
