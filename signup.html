@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +9,7 @@
     input { width: 100%; padding: 10px; margin: 10px 0; background: #222; border: 1px solid #333; color: white; border-radius: 5px; box-sizing: border-box; }
     button { width: 100%; padding: 12px; background: #00ff88; border: none; color: black; font-weight: bold; border-radius: 5px; cursor: pointer; }
     button:hover { background: #00cc6a; }
-    #msg { text-align: center; margin-top: 10px; }
+    #msg { text-align: center; margin-top: 10px; color: #00ff88; }
   </style>
 </head>
 <body>
@@ -22,12 +21,11 @@
     <div id="msg"></div>
   </form>
 
-  <script type="module">
-    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm'
-    
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
     const SUPABASE_URL = 'https://jiasnfvengadhrpauras.supabase.co'
-    const SUPABASE_KEY = 'sb_publishable_ZJaCImE49NUfIFs7S7S7NtnA_xEVCO5ri'
-    const supabase = createClient(SUPABASE_URL, SUPABASE_KEY)
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImppYXNuZnZlbmdhZGhycGF1cmFzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODgyOTg0NzEsImV4cCI6MjEwMzg3NDQ3MX0.YsNlKSdPvH8FtHrfURzGWTHFp4eKv1sH_gsUacN11Bg'
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
 
     document.getElementById('signup-form').addEventListener('submit', async (e) => {
       e.preventDefault()
