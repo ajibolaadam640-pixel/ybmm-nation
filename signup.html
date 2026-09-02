@@ -22,7 +22,7 @@
 <script>
   const SUPABASE_URL = 'https://jiasnfvengadhprpaura.supabase.co';
   const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR...'; 
-  const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
   async function signUp() {
     const email = document.getElementById('email').value;
