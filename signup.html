@@ -29,7 +29,7 @@ const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
     const password = document.getElementById('password').value
     const msg = document.getElementById('message')
     
-    msg.innerText = 'Signing up...'   
+    msg.innerText = 'Signing up...'      msg.innerText = 'Signing up...'
     const { data, error } = await supabase.auth.signUp({alert('Button clicked! Sending to Supabase...');
     email: email,
     password: password
