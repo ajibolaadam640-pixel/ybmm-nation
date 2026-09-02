@@ -19,7 +19,7 @@ const email = document.getElementById('email').value;
 const password = document.getElementById('password').value;
 document.getElementById('msg').innerText = 'Signing up...';
 const {error} = await supabase.auth.signUp({email,password});
-if(error){document.getElementById('msg').innerText='Error: '+error.message}else{document.getElementById('msg').innerText='Success! Account created'}}
+const {error} = await supabase.auth.signUp({email,password});
 </script>
 </body>
 </html>
