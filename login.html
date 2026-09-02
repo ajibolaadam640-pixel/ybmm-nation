@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YBMM Login</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    body { font-family: Arial; background: #0a0a0a; color: white; display: flex; justify-content: center; align-items: center; height: 100vh; }
+    .box { background: #1a1a1a; padding: 30px; border-radius: 12px; width: 300px; border: 1px solid #333; }
+    input { width: 100%; padding: 10px; margin: 10px 0; border-radius: 8px; border: 1px solid #444; background: #222; color: white; }
+    button { width: 100%; padding: 12px; background: #00ff88; border: none; border-radius: 8px; color: black; font-weight: bold; cursor: pointer; }
+    #msg { margin-top: 10px; text-align: center; }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h2>YBMM Login</h2>
+    <input id="email" type="email" placeholder="Email">
+    <input id="password" type="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+    <p id="msg"></p>
+    <p style="text-align:center; margin-top:15px;">No account? <a href="signup.html" style="color:#00ff88;">Sign Up</a></p>
+  </div>
+
+  <script>
+    const SUPABASE_URL = "https://jiasnfvengadhrpauras.supabase.co"
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImppYXNuZnZlbmdhZGhycGF1cmFzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODgyOTg0NzEsImV4cCI6MjEwMzg3NDQ3MX0.YsNlKSdPvH8FtHrfURzGWTHFp4eKv1sH_gsUacN11Bg"
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+
+    async function login() {
+      const email = document.getElementById('email').value
+      const password = document.getElementById('password').value
+      const { data, error } = await supabase.auth.signInWithPassword({ email, password })
+      
+      if (error) {
+        document.getElementById('msg').innerText = error.message
+        document.getElementById('msg').style.color = 'red'
+      } else {
+        document.getElementById('msg').innerText = "Success! Logged in"
+        document.getElementById('msg').style.color = '#00ff88'
+        // Next go dey redirect to dashboard here
+      }
+    }
+  </script>
+</body>
+</html>
