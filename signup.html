@@ -2,12 +2,10 @@
 <html>
 <head>
   <title>YBMM Signup</title>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
-    body { font-family: Arial; display: flex; justify-content: center; align-items: center; height: 100vh; background: #111; color: white; }
-    .box { background: #222; padding: 30px; border-radius: 10px; }
-    input, button { display: block; width: 250px; padding: 10px; margin: 10px 0; border-radius: 5px; border: none; }
-    button { background: green; color: white; font-weight: bold; cursor: pointer; }
+    .box { background: #222; padding: 30px; border-radius: 10px; color: white; }
+    input, button { display: block; width: 250px; padding: 10px; margin: 10px 0; }
+    button { background: green; color: white; font-weight: bold; border: none; }
     #message { margin-top: 10px; }
   </style>
 </head>
@@ -20,32 +18,33 @@
     <p id="message"></p>
   </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-     const SUPABASE_URL = 'https://jiasnfvengadhrpauras.supabase.co' 
-   const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImppYXNuZnZlbmdhZGhycGF1cmFzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODgyOTg0NzEsImV4cCI6MjEwMzg3NDQ3MX0.YsNlKSdPvH8FtHrfURzGWTHFp4eKv1sH_gsUacN11Bg'
-const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+  const SUPABASE_URL = 'https://jiasnfvengadhprpaura.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR...'; 
+  const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
   async function signUp() {
-    const email = document.getElementById('email').value
-    const password = document.getElementById('password').value
-    const msg = document.getElementById('message')
-    
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const msg = document.getElementById('message');
+
     msg.innerText = 'Signing up...';
-alert('Button clicked! Sending to Supabase...');
-const { data, error } = await supabase.auth.signUp({
-email: email,
-password: password
-});
-  
-  if (error) {;{
-    msg.innerText = 'Error: ' + error.message
-    msg.style.color = 'red'
-  } else {alert("ERROR: " + error.message)
-    msg.innerText = 'Success! Account created'
-    msg.style.color = 'green'
+
+    const { data, error } = await supabase.auth.signUp({
+      email: email,
+      password: password
+    });
+
+    if (error) {
+      msg.innerText = 'Error: ' + error.message;
+      msg.style.color = 'red';
+      alert("ERROR: " + error.message);
+    } else {
+      msg.innerText = 'Success! Account created';
+      msg.style.color = 'green';
+    }
   }
-}
-  
-  
 </script>
 </body>
 </html>
