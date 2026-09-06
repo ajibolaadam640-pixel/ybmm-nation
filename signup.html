@@ -1,39 +1,46 @@
 <!DOCTYPE html>
 <html>
 <head><title>YBMM Signup</title></head>
-<body style="background:#111;color:white;text-align:center;padding-top:50px">
+<body style="background:#111;color:white;text-align:center;padding-top:50px;font-family:sans-serif">
 <h2>YBMM NATION Signup</h2>
+
+<!-- Email Signup -->
 <input id="email" type="email" placeholder="Email"><br><br>
-<input id="password" type="password" placeholder="Password" minlength="6"><br><br>
-<button onclick="signUp()">Sign Up</button>
+<input id="password" type="password" placeholder="Password 6+ chars"><br><br>
+<button onclick="signUp()">Sign Up with Email</button>
+<p>OR</p>
+
+<!-- Social Login Buttons -->
+<button onclick="signInWithGoogle()" style="background:red;color:white;padding:10px 20px;border:none">Continue with Google</button><br><br>
+<button onclick="signInWithFacebook()" style="background:#1877F2;color:white;padding:10px 20px;border:none">Continue with Facebook</button>
+
 <p id="msg" style="color:yellow"></p>
 
 <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
 <script>
 const SUPABASE_URL = 'https://jiasnfvengadhprpaura.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImppYXNuZnZlbmdhZGhycGF1cmFzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODgyOTg0NzEsImV4cCI6MjEwMzg3NDQ3MX0.YsNlKSdPvH8FtHrfURzGWTHFp4eKv1sH_gsUacN11Bg';
-
-console.log("Supabase loading...");
 const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
+// Email Signup
 async function signUp(){
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
   document.getElementById('msg').innerText = 'Signing up...';
-  
-  if(!email || !password){ alert("Fill email and password"); return; }
-  if(password.length < 6){ alert("Password must be 6+ characters"); return; }
+  const {error} = await supabase.auth.signUp({email,password});
+  if(error){alert('Error: '+error.message)}else{alert('Success! Check your email or Supabase Users')}
+}
 
-  const {data, error} = await supabase.auth.signUp({email,password});
-  console.log(data, error);
-  
-  if(error){
-    document.getElementById('msg').innerText='Error: '+error.message;
-    alert('Error: '+error.message)
-  }else{
-    document.getElementById('msg').innerText='Success! Check Supabase > Authentication > Users';
-    alert('Success! Go check Supabase')
-  }
+// Google Login
+async function signInWithGoogle(){
+  const {error} = await supabase.auth.signInWithOAuth({provider: 'google'});
+  if(error) alert('Error: '+error.message)
+}
+
+// Facebook Login  
+async function signInWithFacebook(){
+  const {error} = await supabase.auth.signInWithOAuth({provider: 'facebook'});
+  if(error) alert('Error: '+error.message)
 }
 </script>
 </body>
