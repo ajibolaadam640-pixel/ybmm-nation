@@ -1,46 +1,38 @@
 <!DOCTYPE html>
-<html>
-<head><title>YBMM Signup</title></head>
-<body style="background:#111;color:white;text-align:center;padding-top:50px;font-family:sans-serif">
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>YBMM NATION Signup</title>
+</head>
+<body style="background:#111;color:white;text-align:center;font-family:sans-serif;padding-top:80px">
+
 <h2>YBMM NATION Signup</h2>
+<input id="email" type="email" placeholder="Enter Email" style="padding:10px;width:250px"><br><br>
+<input id="password" type="password" placeholder="Password 6+ chars" style="padding:10px;width:250px"><br><br>
+<button onclick="signUp()" style="padding:10px 20px;background:#00ff88;border:none;cursor:pointer">Sign Up</button>
 
-<!-- Email Signup -->
-<input id="email" type="email" placeholder="Email"><br><br>
-<input id="password" type="password" placeholder="Password 6+ chars"><br><br>
-<button onclick="signUp()">Sign Up with Email</button>
-<p>OR</p>
-
-<!-- Social Login Buttons -->
-<button onclick="signInWithGoogle()" style="background:red;color:white;padding:10px 20px;border:none">Continue with Google</button><br><br>
-<button onclick="signInWithFacebook()" style="background:#1877F2;color:white;padding:10px 20px;border:none">Continue with Facebook</button>
-
-<p id="msg" style="color:yellow"></p>
+<p id="msg" style="color:yellow;margin-top:20px"></p>
 
 <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
 <script>
-const SUPABASE_URL = 'https://jiasnfvengadhprpaura.supabase.co';
+const SUPABASE_URL = 'https://jiasnfvengadhrpauras.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImppYXNuZnZlbmdhZGhycGF1cmFzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODgyOTg0NzEsImV4cCI6MjEwMzg3NDQ3MX0.YsNlKSdPvH8FtHrfURzGWTHFp4eKv1sH_gsUacN11Bg';
+
 const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-// Email Signup
 async function signUp(){
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
   document.getElementById('msg').innerText = 'Signing up...';
-  const {error} = await supabase.auth.signUp({email,password});
-  if(error){alert('Error: '+error.message)}else{alert('Success! Check your email or Supabase Users')}
-}
-
-// Google Login
-async function signInWithGoogle(){
-  const {error} = await supabase.auth.signInWithOAuth({provider: 'google'});
-  if(error) alert('Error: '+error.message)
-}
-
-// Facebook Login  
-async function signInWithFacebook(){
-  const {error} = await supabase.auth.signInWithOAuth({provider: 'facebook'});
-  if(error) alert('Error: '+error.message)
+  
+  const {data, error} = await supabase.auth.signUp({email, password});
+  
+  if(error){
+    document.getElementById('msg').innerText = 'Error: ' + error.message;
+  } else {
+    document.getElementById('msg').innerText = 'Success! Check Supabase > Authentication > Users';
+    alert('Account Created!');
+  }
 }
 </script>
 </body>
